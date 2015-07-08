@@ -1,5 +1,5 @@
 <?php
-namespace App\Wamp;
+namespace CakeRatchet\Wamp;
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\WampServerInterface;
 

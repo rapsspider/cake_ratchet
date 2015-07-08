@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Shell;
+namespace CakeRatchet\Shell;
 
-use App\Wamp\CakeWampAppServer;
+use CakeRatchet\Wamp\CakeWampAppServer;
     
 use Cake\Console\Shell;
 use Cake\Core\Configure;

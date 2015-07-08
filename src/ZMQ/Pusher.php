@@ -1,5 +1,5 @@
 <?php
-namespace App\ZMQ;
+namespace CakeRatchet\ZMQ;
 
 use Cake\Core\Configure;
 use ZMQ;
