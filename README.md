@@ -15,7 +15,7 @@ Add this at the end of your _config\app.php_ file:
     /**
      * Ratchet configuration
      */
-    'Ratchet' => [
+    'CakeRatchet' => [
         'Server' => [
             'host' => '0.0.0.0',
             'port' => 8080
