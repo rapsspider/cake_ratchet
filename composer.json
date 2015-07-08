@@ -1,0 +1,28 @@
+{
+    "name": "rapsspider/cake_ratchet",
+    "description": "Ratchet Plugin for CakePHP 3.X",
+    "homepage": "https://github.com/rapsspider/cake_ratchet",
+    "keywords": ["cakephp", "plugin", "ratchet"],
+    "type": "plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jason Bourlard",
+            "role": "Author"
+        }
+    ],
+	"support": {
+		"issues": "https://github.com/cakephp/cake_ratchet/issues",
+		"source": "https://github.com/cakephp/cake_ratchet"
+    },
+    "require": {
+        "cakephp/cakephp": "~3.0",
+        "cboden/ratchet": "dev-master",
+        "react/zmq": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "CakeRatchet\\": "src"
+        }
+    }
+}
