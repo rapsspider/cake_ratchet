@@ -65,13 +65,19 @@ on your cakephp folder : _.\bin\cake ratchet start_
 If JSHelper is activate, an fonction will be available:
 
     <script>
-    CakeRatchet.connection(function(connection) {
+    var onConnect = function(connection) {
         connection.subscribe('my_topic', function(topic, data) {
             // This is where you would add the new article to the DOM (beyond the scope of this tutorial)
             console.log('New article published to category "' + topic + '" : ');
             console.log(data);
         });
-    }); 
+    };
+    
+    var onClose = function(connection) {
+    
+    };
+    
+    CakeRatchet.connection(onConnect, onClose); 
     </script>
 
 Else, you can do this :
