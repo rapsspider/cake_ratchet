@@ -37,16 +37,15 @@ class RatchetShell extends Shell {
     public function start() {
         $this->__loop = Factory::create();
         
-        $pusher = new CakeWampAppServer;
+        $pusher = new CakeWampAppServer();
         
         $context = new Context($this->__loop);
         $pull = $context->getSocket(ZMQ::SOCKET_PULL);
-        $this->out("tcp://" . Configure::read('Ratchet.ZMQServer.host') . ":" . Configure::read('Ratchet.ZMQServer.port'));
-        $pull->bind("tcp://" . Configure::read('Ratchet.ZMQServer.host') . ":" . Configure::read('Ratchet.ZMQServer.port'));
+        $pull->bind("tcp://" . Configure::read('CakeRatchet.ZMQServer.host') . ":" . Configure::read('CakeRatchet.ZMQServer.port'));
         $pull->on('message', array($pusher, 'onBlogEntry'));
         
         $webSock = new Server($this->__loop);
-        $webSock->listen(Configure::read('Ratchet.Server.port'), Configure::read('Ratchet.Server.host'));
+        $webSock->listen(Configure::read('CakeRatchet.Server.port'), Configure::read('CakeRatchet.Server.host'));
         
         $this->__ioServer = new IoServer(
             new HttpServer(

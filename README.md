@@ -24,11 +24,12 @@ Add this at the end of your _config\app.php_ file:
             'host' => '127.0.0.1',
             'port' => 5555
         ],
+        'JSHelper' => true
     ]
     
 Add this in your _config\bootstrap.php_ file:
 
-    Plugin::load('CakeRatchet');
+    Plugin::load('CakeRatchet', ['bootstrap' => true]);
     
 It's possible you need to add this on your _vendors/cakephp-plugins.php_ file:
     
@@ -60,6 +61,20 @@ on your cakephp folder : _.\bin\cake ratchet start_
     }
     
 ### Client
+
+If JSHelper is activate, an fonction will be available:
+
+    <script>
+    CakeRatchet.connection(function(connection) {
+        connection.subscribe('my_topic', function(topic, data) {
+            // This is where you would add the new article to the DOM (beyond the scope of this tutorial)
+            console.log('New article published to category "' + topic + '" : ');
+            console.log(data);
+        });
+    }); 
+    </script>
+
+Else, you can do this :
 
     <script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"></script>
 	<script>

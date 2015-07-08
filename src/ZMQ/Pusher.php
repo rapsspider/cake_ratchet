@@ -8,7 +8,8 @@ use ZMQContext;
 /**
  * Class that help you to send to you ZMQ server.
  */
-class Pusher {
+class Pusher 
+{
     
     /**
      * Send data to the ZMQ server.
@@ -16,7 +17,8 @@ class Pusher {
      *                      message.
      * @param Array  $data  Data to send
      */
-    public static function send($topic, $data) {
+    public static function send($topic, $data) 
+    {
         self::sendAction($topic, $data, null);
     }
     
@@ -28,7 +30,8 @@ class Pusher {
      *                      message.
      * @param Array  $data  Data to send
      */
-    public static function sendAdd($topic, $data) {
+    public static function sendAdd($topic, $data) 
+    {
         self::sendAction($topic, $data, 'add');
     }
     
@@ -40,7 +43,8 @@ class Pusher {
      *                      message.
      * @param Array  $data  Data to send
      */
-    public static function sendDeleted($topic, $data) {
+    public static function sendDeleted($topic, $data) 
+    {
         self::sendAction($topic, $data, 'delete');
     }
     
@@ -52,7 +56,8 @@ class Pusher {
      *                      message.
      * @param Array  $data  Data to send
      */
-    public static function sendUpdated($topic, $data) {
+    public static function sendUpdated($topic, $data) 
+    {
         self::sendAction($topic, $data, 'update');
     }
     
@@ -65,10 +70,11 @@ class Pusher {
      * @param Array  $data   Data to send
      * @param String $action Action to use.
      */
-    public static function sendAction($topic, $data, $action) {
+    public static function sendAction($topic, $data, $action) 
+    {
         $context = new ZMQContext();
         $socket = $context->getSocket(ZMQ::SOCKET_PUSH, 'my pusher');
-        $socket->connect("tcp://" . Configure::read('Ratchet.ZMQServer.host') . ":" . Configure::read('Ratchet.ZMQServer.port'));
+        $socket->connect("tcp://" . Configure::read('CakeRatchet.ZMQServer.host') . ":" . Configure::read('CakeRatchet.ZMQServer.port'));
         
         $socket->send(json_encode([
             'topic' => $topic, 
