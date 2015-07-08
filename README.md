@@ -6,11 +6,11 @@ ZeroMQ : http://www.zeromq.org/
 
 ## Installation
 
-@TODO
+    composer require rapsspider/cake_ratchet
 
 ## Configuration
 
-Add this at the end of your _config\app.php_ file.
+Add this at the end of your _config\app.php_ file:
 
     /**
      * Ratchet configuration
@@ -25,6 +25,19 @@ Add this at the end of your _config\app.php_ file.
             'port' => 5555
         ],
     ]
+    
+Add this in your _config\bootstrap.php_ file:
+
+    Plugin::load('CakeRatchet');
+    
+It's possible you need to add this on your _vendors/cakephp-plugins.php_ file:
+    
+    ...
+    'plugins' => [
+        ...
+        'CakeRatchet' => $baseDir . '/vendor/rapsspider/cake_ratchet/',
+        ...
+    ]
 
 ## Start
 
@@ -32,6 +45,8 @@ First, you need to start the server, to do this just run this command
 on your cakephp folder : _.\bin\cake ratchet start_
 
 ## Examples
+
+### Server
 
     namespace App\Controller;
     use (@TODO)\Pusher;
@@ -43,3 +58,23 @@ on your cakephp folder : _.\bin\cake ratchet start_
         }
         
     }
+    
+### Client
+
+    <script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"></script>
+	<script>
+		var conn = new ab.Session('ws://localhost:8080',
+			function() {
+				conn.subscribe('my_topic', function(topic, data) {
+					// This is where you would add the new article to the DOM (beyond the scope of this tutorial)
+					console.log('New article published to category "' + topic + '" : ');
+					console.log(data);
+				});
+				console.log('Connexion réussie');
+			},
+			function() {
+				console.warn('WebSocket connection closed');
+			},
+			{'skipSubprotocolCheck': true}
+		);
+	</script>
